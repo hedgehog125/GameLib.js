@@ -1,0 +1,23 @@
+<script src="GameLib.js"></script>
+<script type="text/javascript"> //Import the lib.
+makeCanvas(480,360) //Make the canvas 480 wide 360 high.
+var speed = 1
+newSprite("Background")
+newResetScript("Background",'setCos("Sky.png"); setWidth(480); setHeight(360); setX(0); setY(0)')
+newSprite("Sun")
+newResetScript("Sun",'setCos("Sun.png"); setWidth(100); setHeight(65); setX(canvasW/2); setY(canvasH/2); centre(); setDir(0)')
+newSprite("Earth")
+newResetScript("Earth",'setCos("Earth.png"); setWidth(50); setHeight(30); setX(canvasW/2); setY(canvasH/2); centre(); setDir(0)')
+newSprite("Moon")
+newResetScript("Moon",'setCos("Moon.png"); setWidth(25); setHeight(15); setDir(0)')
+
+function orbit(Sprite, Dis, RotSpeed) {
+	setX(getSpriteData(Sprite,"x") + getSpriteData(Sprite,"w")/4)
+	setY(getSpriteData(Sprite,"y") + getSpriteData(Sprite,"h")/4) 
+	move(Dis)
+	turn(RotSpeed)
+}
+
+newScript("Earth", 'orbit("Sun",90,speed)')
+newScript("Moon", 'orbit("Earth",30,speed*10)')
+</script>

@@ -1,0 +1,29 @@
+<p style="text-align: center;" id="Click">Wait</p>
+<br>
+<script src="GameLib.js"></script>
+<script type="text/javascript"> //Import the lib.
+makeCanvas(480,360) //Make the canvas 480 wide 360 high.
+var click = 0
+function mouseDown(ev) {
+    if(ev.which==1) {
+        click = 1
+    } else if(ev.which==3)  {
+        click = 2
+    } else {
+        click = 3
+    }
+    console.log(click)
+}
+
+function mouseUp(e) {
+	click = 0
+}
+
+function display() {
+	document.getElementById("Click").innerHTML = click
+}
+
+document.addEventListener("mousedown", mouseDown, false)
+document.addEventListener("mouseup", mouseUp, false)
+setInterval(display, 10)
+</script>

@@ -1,0 +1,25 @@
+<script src="GameLib.js"></script>
+<script type="text/javascript"> //Import the lib.
+addTouching("Earth.png")
+addTouching("Mouse.png")
+makeCanvas(480,360)
+newSprite("Earth")
+newSprite("Mouse")
+newText("Wait",0,30,30,"Text")
+newResetScript("Earth","setCos('Earth.png'); setX(canvasW/2); setY(canvasH/2); resize(); scale(20); centre()")
+newResetScript("Mouse","setCos('Mouse.png'); resize(); scale(20)")
+var touchingText = false
+
+function TextScript() {
+	setText(touchingText)
+}
+
+function MouseScript() {
+	setX(mouseX - getSpriteData(name, "w") / 2)
+	setY(mouseY - getSpriteData(name, "h") / 2)
+	touchingText = touching("Earth")
+	//centre()
+}
+newScript("Mouse","MouseScript()")
+newTextScript("Text","TextScript()")
+</script>

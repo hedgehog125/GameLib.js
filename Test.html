@@ -1,0 +1,58 @@
+<script src="GameLib.js"></script>
+<script type="text/javascript"> //Import the lib.
+makeCanvas(480,360) //Make the canvas 480 wide 360 high.
+var me = "Sprite1" //Define a sprite name to make it easier to type it.
+var keyIDs = {"Up":38,"Down":40,"Left":37,"Right":39,"C":67} //Define a keypress list.
+var keyIndex = ["Up","Down","Left","Right","C"] //Define an index for it.
+var speed = 10 //Set a speed var.
+
+newSprite("Background") //Add a sprite for the background.
+newSprite("Dot") //Add a sprite to follow the mouse.
+newSprite("Sprite1") //Add a sprite.
+
+setTextCentre(false) //Turn off text centring.
+newText("Wait",0,15,20,"Text1") //Add some text.
+
+newResetScript(me, `setCos("IMG.jpg"); setX(canvasW/2); setY(canvasH/2); centre()`) //Set the costume, X, Y and centre it.
+newResetScript("Background", `setCos("Background.jpg"); setX(0); setY(0); setWidth(canvasW); setHeight(canvasH)`) //Set the costume, X, Y for the background.
+newResetScript("Dot", `setCos("Mouse.png"); setX(0); setY(0); setWidth(20); setHeight(30)`) //Set stuff for the dot.
+
+function loadKeys() { //Make a function to load the keys.
+	var i = 0
+	while(i < Object.keys(keyIndex).length) { //Add the keys.
+		newKey(keyIDs[keyIndex[i]])
+		i++ 
+	}
+}
+
+function moveCollision(moveX,moveY) { //Add colision detector to stop it going offscreen.
+	var canMove = 1
+	if (X + moveX + sprites[name]["w"] > canvasW| X + moveX < 0) {
+		var canMove = 0
+	}
+	if (canMove == 1) {
+		if (Y + moveY < 0 | Y + moveY + sprites[name]["h"] > canvasH) {
+		var canMove = 0
+		}
+	}
+	if (canMove == 1) {
+		changeX(moveX)
+		changeY(moveY)
+	}
+}
+
+loadKeys() // Load the keys.
+//Add moving scripts.
+newScript(me, `if (keyPressed(keyIDs["Up"])) {; moveCollision(0,0-speed);}`)
+newScript(me, `if (keyPressed(keyIDs["Down"])) {; moveCollision(0,speed);}`)
+newScript(me, `if (keyPressed(keyIDs["Left"])) {; moveCollision(0-speed,0);}`)
+newScript(me, `if (keyPressed(keyIDs["Right"])) {; moveCollision(speed,0);}`)
+//runCode(me, `penDown(); setPenSize(10)`) // Add a trial.
+//Add a clear script.
+//newScript(me, `if (keyPressed(keyIDs["C"])) {; clearPen();}`)
+//Add scripts for the dot.
+newScript("Dot", `setX(mouseX-10); setY(mouseY-10);`)
+//Add scripts for the text.
+newTextScript("Text1", `setText("Mouse clicks... left:" + leftMouseDown() + ", right:" + rightMouseDown() + ", middle:" + middleMouseDown() + ".")`)
+newResetScript(me,'play("Music.ogg",0,true,10,0)')
+</script>

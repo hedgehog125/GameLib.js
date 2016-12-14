@@ -1,0 +1,9 @@
+<script src="GameLib.js"></script>
+<script type="text/javascript">
+makeCanvas(480,360)
+newSprite("Background")
+runCode("Background", `setCos("Background.jpg"); setWidth(canvasW); setHeight(canvasH); setX(0); setY(0)`)
+var imgdata = "?"
+window.onload = newScript("Background",`imgdata = canvasVar.getImageData(0,0,canvasW,canvasH)`) //This needs to be run in the lib.
+</script>
+    

@@ -1,0 +1,23 @@
+Press a key look at the field below to get the ascii ID. <br>
+<p style="text-align: center;" id="Pressed">Wait</p>
+<br>
+<p style="text-align: center;" id="AllPressed">Wait</p>
+<br>
+<script src="GameLib.js"></script>
+<script type="text/javascript">
+//makeCanvas(360,480)
+var a = "?"
+var b = "?"
+newKey(37)
+newKey(38)
+newKey(39)
+newKey(40)
+function displayKeysPressed() {
+	a = currentKeyPressed()
+	b = keysDown()
+	document.getElementById("Pressed").innerHTML=a
+	document.getElementById("AllPressed").innerHTML=b
+	//document.write("<br>" + a)
+}
+setInterval(displayKeysPressed, 10)
+</script>

@@ -644,7 +644,7 @@ function newTextScript(Text, Script) {
 }
 
 function getSpriteData(Sprite, Data, id) {
-	if (id === undefined) {
+	if (id === undefined | id === -1) {
 		return sprites[Sprite][Data]
 	}
 	else {

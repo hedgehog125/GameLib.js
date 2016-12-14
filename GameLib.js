@@ -75,131 +75,133 @@ function addControl(img,w,h,xpos,ypos,code) {
 }
 // Load the controls.
 var path = "SYS Files/"
-var Code = `if (leftMouseDown()) {
-	if (mouseX >= X & mouseX <= X + W) {
-		if (mouseY >= Y & mouseY <= Y + H) {
-			if (controlList[i]["click"] == 0) {
-				stoped = ""
-				var counter = 0
-				while(counter < soundsPlaying) {
-					if (soundData[counter] != undefined) {
-						stop(counter)
-					}
-					var counter = counter + 1
-				}
-				var counter = 0
-				while(counter < Object.keys(sprites).length) {
-					var name = spriteNames[counter]
-					sprites[name]["life"] = 0
-					var id = 0
-					sprites[name]["clones"] = []
-					sprites[name]["cloneCount"] = 0
-					var counter = counter + 1
-				}
-				var name = ""
-				running = true
-				reset()
-				controlList[3]["img"] = undefined
-				controlList[3]["img"] = new Image()
-				controlList[3]["img"].src = path + "Pause.png"
-				controlList[3]["cos"] = path + "Pause.png"
-				runs = runs + 1
-				controlList[i]["click"] = 1
-			}
-		}
-		
-	}
-}
-if (leftMouseDown() == false) {
-	controlList[i]["click"] = 0
-}
-`
-addControl(path + "Bar.png",0,305,-10,-2,"")
-addControl(path + "Flag.png",15,20,5,2,Code)
-var Code = `if (leftMouseDown()) {
-	if (mouseX >= X & mouseX <= X + W) {
-		if (mouseY >= Y & mouseY <= Y + H) {
-			if (controlList[i]["click"] == 0) {
-				running = false
-				controlList[3]["img"] = undefined
-				controlList[3]["img"] = new Image()
-				controlList[3]["img"].src = path + "Resume.png"
-				controlList[3]["cos"] = path + "Resume.png"
-				stoped = "stoped"
-				var counter = 0
-				while(counter < soundsPlaying) {
-					if (soundData[counter] != undefined) {
-						stop(counter)
-						
-					}
-					var counter = counter + 1
-				}
-				controlList[i]["click"] = 1
-			}
-			
-		}
-		
-	}
-}
-if (leftMouseDown() == false) {
-	controlList[i]["click"] = 0
-}
-`
-addControl(path + "Stop.png",20,20,0,2,Code)
-var Code = `if (leftMouseDown()) {
-	if (controlList[i]["click"] == 0) {
+function loadControls() {
+	var Code = `if (leftMouseDown()) {
 		if (mouseX >= X & mouseX <= X + W) {
 			if (mouseY >= Y & mouseY <= Y + H) {
-				controlList[i]["click"] = 1
-				if (stoped == "") {
-					if (controlList[i]["cos"] == path + "Resume.png") {
-						running = true
-						controlList[i]["img"] = undefined
-						controlList[i]["img"] = new Image()
-						controlList[i]["img"].src = path + "Pause.png"
-						controlList[i]["cos"] = path + "Pause.png"
-						stoped = ""
-						if (runs == 0) {
-							reset()
+				if (controlList[i]["click"] == 0) {
+					stoped = ""
+					var counter = 0
+					while(counter < soundsPlaying) {
+						if (soundData[counter] != undefined) {
+							stop(counter)
 						}
-						var counter = 0
-						while(counter < soundsPlaying) {
-							if (soundData[counter] != undefined) {
-								resume(counter)
-							}
-							var counter = counter + 1
-						}
-					
+						var counter = counter + 1
 					}
-					else {
-						running = false
-						controlList[i]["img"] = undefined
-						controlList[i]["img"] = new Image()
-						controlList[i]["img"].src = path + "Resume.png"
-						controlList[i]["cos"] = path + "Resume.png"
-						stoped = ""
-						var counter = 0
-						while(counter < soundsPlaying) {
-							if (soundData[counter] != undefined) {
-								pause(counter)
-							}
-							var counter = counter + 1
-						}
+					var counter = 0
+					while(counter < Object.keys(sprites).length) {
+						var name = spriteNames[counter]
+						sprites[name]["life"] = 0
+						var id = 0
+						sprites[name]["clones"] = []
+						sprites[name]["cloneCount"] = 0
+						var counter = counter + 1
 					}
-					if (runs == 0) {
-						runs = 1
-					}
+					var name = ""
+					running = true
+					reset()
+					controlList[3]["img"] = undefined
+					controlList[3]["img"] = new Image()
+					controlList[3]["img"].src = path + "Pause.png"
+					controlList[3]["cos"] = path + "Pause.png"
+					runs = runs + 1
+					controlList[i]["click"] = 1
 				}
 			}
 		
 		}
 	}
+	if (leftMouseDown() == false) {
+		controlList[i]["click"] = 0
+	}
+	`
+	addControl(path + "Bar.png",0,305,-10,-2,"")
+	addControl(path + "Flag.png",15,20,5,2,Code)
+	var Code = `if (leftMouseDown()) {
+		if (mouseX >= X & mouseX <= X + W) {
+			if (mouseY >= Y & mouseY <= Y + H) {
+				if (controlList[i]["click"] == 0) {
+					running = false
+					controlList[3]["img"] = undefined
+					controlList[3]["img"] = new Image()
+					controlList[3]["img"].src = path + "Resume.png"
+					controlList[3]["cos"] = path + "Resume.png"
+					stoped = "stoped"
+					var counter = 0
+					while(counter < soundsPlaying) {
+						if (soundData[counter] != undefined) {
+							stop(counter)
+							
+						}
+						var counter = counter + 1
+					}
+					controlList[i]["click"] = 1
+				}
+			
+			}
+		
+		}
+	}
+	if (leftMouseDown() == false) {
+		controlList[i]["click"] = 0
+	}
+	`
+	addControl(path + "Stop.png",20,20,0,2,Code)
+	var Code = `if (leftMouseDown()) {
+		if (controlList[i]["click"] == 0) {
+			if (mouseX >= X & mouseX <= X + W) {
+				if (mouseY >= Y & mouseY <= Y + H) {
+					controlList[i]["click"] = 1
+					if (stoped == "") {
+						if (controlList[i]["cos"] == path + "Resume.png") {
+							running = true
+							controlList[i]["img"] = undefined
+							controlList[i]["img"] = new Image()
+							controlList[i]["img"].src = path + "Pause.png"
+							controlList[i]["cos"] = path + "Pause.png"
+							stoped = ""
+							if (runs == 0) {
+								reset()
+							}
+							var counter = 0
+							while(counter < soundsPlaying) {
+								if (soundData[counter] != undefined) {
+									resume(counter)
+								}
+								var counter = counter + 1
+							}
+					
+						}
+						else {
+							running = false
+							controlList[i]["img"] = undefined
+							controlList[i]["img"] = new Image()
+							controlList[i]["img"].src = path + "Resume.png"
+							controlList[i]["cos"] = path + "Resume.png"
+							stoped = ""
+							var counter = 0
+							while(counter < soundsPlaying) {
+								if (soundData[counter] != undefined) {
+									pause(counter)
+								}
+								var counter = counter + 1
+							}
+						}
+						if (runs == 0) {
+							runs = 1
+						}
+					}
+				}
+		
+			}
+		}
+	}
+	if (leftMouseDown() == false) {
+		controlList[i]["click"] = 0
+	}
+	`
+	addControl(path + "Resume.png",25,25,0,0,Code)
 }
-if (leftMouseDown() == false) {
-	controlList[i]["click"] = 0
-}
-`
-addControl(path + "Resume.png",25,25,0,0,Code)
 // Keep track of the sounds playing and other info.
 var soundsPlaying = 0
 var sounds = []
@@ -233,6 +235,7 @@ function makeCanvas(W,H) {
 		canvasW = W
 		canvasH = H
 		canvasVar.imageSmoothingQuality = "high"
+		loadControls()
 		controlList[0]["w"] = W+20
 		controlList[2]["x"] = W-30
 		controlList[3]["x"] = (W/2)-20

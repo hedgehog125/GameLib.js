@@ -1,17 +1,15 @@
 <script src="../GameLib.js"></script>
 <script type="text/javascript">
- console.log(path);
- path="../" + path;
- console.log(path);
+path = "../" + path;
 
- makeCanvas(480,360);
- newSprite("Sprite1");
- newResetScript("Sprite1",'setCos("chicken.jpg")');
+makeCanvas(480,360);
+newSprite("Sprite1");
+newResetScript("Sprite1",'setCos("chicken.jpg")');
 
- newSprite("Sprite2");
- newResetScript("Sprite2",'setCos("IMG.jpg")');
- newResetScript("Sprite1", 'setX(200); setY(100);');
- newResetScript("Sprite1",'setDir(120)');
+newSprite("Sprite2");
+newResetScript("Sprite2",'setCos("IMG.jpg")');
+newResetScript("Sprite1", 'setX(200); setY(100);');
+newResetScript("Sprite1",'setDir(120)');
 
 </script>
 
